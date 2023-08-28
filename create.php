@@ -22,6 +22,16 @@
 			$name = $_POST['name'];
 			$email= $_POST['email'];
 			$cell= $_POST['cell'];
+			$address= $_POST['address'];
+			$age= $_POST['age'];
+			if (isset($_POST['gender'])) {
+				$gender= $_POST['gender'];
+			}else {
+				$gender=NULL;
+			}
+			
+			$salary= $_POST['salary'];
+
 		
 			//$email= $_POST['email'];
 			//$email= $_POST['email'];
@@ -34,17 +44,11 @@
 				$msg = validate('Invalid Cell Number');
 			}else{
 				$file_name = move($_FILES['photo'], 'media/students/');
-				create("INSERT INTO staff(name, email,cell,photo)VALUES('$name', '$email', '$cell','$file_name')");
+				create("INSERT INTO staff(name, email,cell, address,age,gender,salary, photo)VALUES('$name', '$email', '$cell','$address', '$age', '$gender', '$salary', '$file_name')");
 				$msg = validate('Student added successfully', 'success');
 			}
-
-
 		}
-		
-		
-		?>
-
-        
+		?>    
 
 	<div class="wrap ">
 		<a class="btn btn-sm btn-primary" href="index.php">All students</a>
@@ -73,7 +77,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Location</label>
-						<select class="form-control" name="location" id="">
+						<select class="form-control" name="address" id="">
 							<option value="">-select-</option>
 							<option value="Mirpur">Mirpur</option>
 							<option value="Gulshan">Gulshan</option>
@@ -94,7 +98,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Amount</label>
-						<input name="amount" class="form-control" value="<?php old('amount'); ?>" type="text">
+						<input name="salary" class="form-control" value="<?php old('salary'); ?>" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">photo</label>

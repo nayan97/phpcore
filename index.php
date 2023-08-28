@@ -12,9 +12,6 @@
 </head>
 
 <body>
-
-
-
 	<div class="wrap-table ">
 		<a class="btn btn-sm btn-primary" href="create.php">Add new student</a>
 		<br>
@@ -39,40 +36,44 @@
 					</thead>
 					<tbody>
 
-					<?php
+						<?php
 						$i=1;
-					$data = all('staff');
-						
-					while ($item = $data->fetch_object()) :
-					
-					?>
+						//$data = all('staff');
 
+								// basic where
+						//$data = connect()-> query("SELECT * FROM staff WHERE gender='Female'");
+
+								// where NOT
+						$data = connect()-> query("SELECT * FROM staff WHERE NOT address='Mirpur'");
+						
+						while ($item = $data->fetch_object()) :
+							
+						?>
                        <tr>
 						<td><?php echo $i;$i++;?></td>
 						<td><?php echo $item->name?></td>
 						<td><?php echo $item->email?></td>
 						<td><?php echo $item->cell?></td>
+						<td><?php echo $item->address?></td>
+						<td><?php echo $item->age?></td>
+						<td><?php echo $item->gender?></td>
+						<td><?php echo $item->salary?></td>
 						<td><img src="media/students/<?php echo $item->photo?>" alt=""></td>
-					
+						<td>
+							<a class="btn btn-sm btn-info" href="#">View</a>
+							<a class="btn btn-sm btn-warning" href="#">Edit</a>
+							<a class="btn btn-sm btn-danger" href="#">Delete</a>
+						</td>
 					   </tr>
 
-					<?php
-					endwhile;
+						<?php
+						endwhile;
 					   ?>
-	
-
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
 
 	<!-- JS FILES  -->
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
