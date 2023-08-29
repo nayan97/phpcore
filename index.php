@@ -44,7 +44,7 @@
 						//$data = connect()-> query("SELECT * FROM staff WHERE gender='Female'");
 
 								// where NOT
-						$data = connect()-> query("SELECT * FROM staff WHERE NOT address='Mirpur'");
+						$data = connect()-> query("SELECT * FROM staff");
 						
 						while ($item = $data->fetch_object()) :
 							
@@ -61,8 +61,8 @@
 						<td><img src="media/students/<?php echo $item->photo?>" alt=""></td>
 						<td>
 							<a class="btn btn-sm btn-info" href="#">View</a>
-							<a class="btn btn-sm btn-warning" href="#">Edit</a>
-							<a class="btn btn-sm btn-danger" href="#">Delete</a>
+							<a class="btn btn-sm btn-warning" href="update.php?edit_id=<?php echo $item->id?>">Edit</a>
+							<a class="btn btn-sm btn-danger" href="delete.php?delete_id=<?php echo $item->id?>">Delete</a>
 						</td>
 					   </tr>
 

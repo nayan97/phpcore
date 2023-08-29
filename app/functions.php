@@ -94,3 +94,16 @@ function move($file, $path = '/')
 
     return $file_name;
 }
+
+
+
+// find Single data
+
+function find($table, $id){
+  $sql = "SELECT * FROM {$table} WHERE id='$id'";  
+
+ $data = connect()->query($sql);
+ return $data ->fetch_object();
+
+
+}
