@@ -17,46 +17,34 @@
 		
 		//form isseting
 
-		if(isset($_POST['add_student'])){
+		if(isset($_POST['add_product'])){
 			// get data
 			$name = $_POST['name'];
-			$email= $_POST['email'];
-			$cell= $_POST['cell'];
-			$address= $_POST['address'];
-			$age= $_POST['age'];
-			if (isset($_POST['gender'])) {
-				$gender= $_POST['gender'];
-			}else {
-				$gender=NULL;
-			}
-			
-			$salary= $_POST['salary'];
+			$slug = slug($name);
+			$price= $_POST['price'];
+			$s_price= $_POST['s_price'];
+			$description = $_POST['description'];
+			$category = $_POST['category'];
 
-		
-			//$email= $_POST['email'];
-			//$email= $_POST['email'];
-
-			if(empty($name) || empty($email)|| empty($cell)) {
+			if(empty($name) || empty($price) || empty($category) || empty($description)) {
 				$msg = validate('All field are required');
-			}else if(emailcheck($email) == false){
-				$msg = validate('Invalid Email Adrress');
-			}else if(cellcheck($cell) == false){
-				$msg = validate('Invalid Cell Number');
+			
 			}else{
-				$file_name = move($_FILES['photo'], 'media/students/');
-				create("INSERT INTO staff(name, email,cell, address,age,gender,salary, photo)VALUES('$name', '$email', '$cell','$address', '$age', '$gender', '$salary', '$file_name')");
+				$file_name = move($_FILES['photo'], 'media/products/');
+
+				create("INSERT INTO products(name, slug, price,s_price, description, category, photo)VALUES('$name', '$slug', '$price', '$s_price','$description', '$category','$file_name')");
 				$msg = validate('Student added successfully', 'success');
 			}
 		}
 		?>    
 
 	<div class="wrap ">
-		<a class="btn btn-sm btn-primary" href="index.php">All students</a>
+		<a class="btn btn-sm btn-primary" href="index.php">All Products</a>
 		<br>
 		<br>
 		<div class="card shadow">
 			<div class="card-body">
-				<h2>Add new student</h2>
+				<h2>Add New Products</h2>
 				<?php
 				if (isset($msg)) {
 					echo $msg;
@@ -68,44 +56,37 @@
 						<input name="name" class="form-control" value="<?php old('name'); ?>" type="text">
 					</div>
 					<div class="form-group">
-						<label for="">Email</label>
-						<input name="email" class="form-control" value="<?php old('email'); ?>" type="text">
+						<label for="">price</label>
+						<input name="price" class="form-control" value="<?php old('price'); ?>" type="text">
 					</div>
 					<div class="form-group">
-						<label for="">Cell</label>
-						<input name="cell" class="form-control" value="<?php old('cell'); ?>" type="text">
+						<label for="">Sell price</label>
+						<input name="s_price" class="form-control" value="<?php old('s_price'); ?>" type="text">
 					</div>
 					<div class="form-group">
-						<label for="">Location</label>
-						<select class="form-control" name="address" id="">
+						<label for="">Decription</label>
+						<input name="description" class="form-control" value="<?php old('description'); ?>" type="text">
+					</div>
+					<div class="form-group">
+						<label for="">Category</label>
+						<select class="form-control" name="category" id="">
 							<option value="">-select-</option>
-							<option value="Mirpur">Mirpur</option>
-							<option value="Gulshan">Gulshan</option>
-							<option value="Uttara">Uttara</option>
-							<option value="Banani">Banani</option>
-							<option value="Dhanmondi">Dhanmondi</option>
-							<option value="Gazipur">Gazipur</option>
+							<option value="electronic">Electronic</option>
+							<option value="fassion">Fassion</option>
+							<option value="home&living">Home&living</option>
+							<option value="toyes">Toyes</option>>
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="">Age</label>
-						<input name="age" class="form-control" value="<?php old('age'); ?>" type="text">
-					</div>
-					<div class="form-group">
-						<label for="">Gender</label>
-						<input name="gender" type="radio" value="Male" id="Male"> <label for="Male">Male</label>
-						<input name="gender" type="radio" value="Female" id="Female"> <label for="Female">Female</label>
-					</div>
-					<div class="form-group">
-						<label for="">Amount</label>
-						<input name="salary" class="form-control" value="<?php old('salary'); ?>" type="text">
+						<label for="">Quantity</label>
+						<input name="quantity" class="form-control" value="<?php old('quantity'); ?>" type="number">
 					</div>
 					<div class="form-group">
 						<label for="">photo</label>
 						<input name="photo" class="" value="<?php old('photo'); ?>" type="file">
 					</div>
 					<div class="form-group">
-						<input name="add_student" class="btn btn-primary" type="submit" value="Sign Up">
+						<input name="add_product" class="btn btn-primary" type="submit" value="Add">
 					</div>
 				</form>
 			</div>

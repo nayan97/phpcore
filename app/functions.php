@@ -105,5 +105,15 @@ function find($table, $id){
  $data = connect()->query($sql);
  return $data ->fetch_object();
 
+   
+}
 
+
+// slug 
+// generate
+
+function slug($name)
+{
+    $productlower = strtolower($name);
+    return str_replace(' ', '-', $productlower);
 }
