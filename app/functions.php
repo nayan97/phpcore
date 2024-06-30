@@ -117,3 +117,19 @@ function slug($name)
     $productlower = strtolower($name);
     return str_replace(' ', '-', $productlower);
 }
+
+
+function delete($table, $delete_id){
+
+    $del = "delete FROM {$table} WHERE id = '$delete_id'";
+    
+    $result = connect()->query($del);
+
+    if ($result){
+
+        $msg = validate('Student added successfully', 'success');
+    }
+
+
+
+}

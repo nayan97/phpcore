@@ -34,6 +34,7 @@
 
 				create("INSERT INTO products(name, slug, price,s_price, description, category, photo)VALUES('$name', '$slug', '$price', '$s_price','$description', '$category','$file_name')");
 				$msg = validate('Student added successfully', 'success');
+				formClean();
 			}
 		}
 		?>    
