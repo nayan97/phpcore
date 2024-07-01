@@ -490,10 +490,25 @@
               <!-- end of widget        -->
               <div class="widget">
                 <h6 class="upper">Trending Products</h6>
+                < class="nav product-list">
                 <ul class="nav product-list">
 
-  
+                  <?php
+                      $products = connect()->query("SELECT * FROM products ORDER BY id DESC LIMIT 3");
+                      while ($product = $products->fetch_object()):
+                  ?>
+                    <li>
+                      <div class="product-thumbnail">
+                        <img src="../media/products/<?php echo $product -> photo ?>" alt="">
+                      </div>
+                      <div class="product-summary"><a href="#"><?php echo $product -> name ?></a><span>$<?php echo $product -> price ?></span>
+                      </div>
+                    </li>
+
+                    <?php endwhile; ?>
                 </ul>
+  
+              
               </div>
               <!-- end of widget          -->
               <div class="widget">
@@ -551,7 +566,7 @@
                 <div class="col-md-4 col-sm-6">
                   <div class="shop-product">
                     <div class="product-thumb">
-                      <a href="#">
+                      <a href="single.php?slug=<?php echo $product -> slug;?>">
                         <img style="width: 280px; height: 280px" src="../media/products/<?php echo $product -> photo ?>" alt="">
                       </a>
                       <div class="product-overlay"><a href="#" class="btn btn-color-out btn-sm">Add To Cart<i class="ti-bag"></i></a>

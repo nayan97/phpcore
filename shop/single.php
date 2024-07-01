@@ -1,3 +1,4 @@
+<?php require_once "autoload.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,21 +29,7 @@
   </head>
 
   <body>
-    <!-- Preloader-->
-    <div id="loader">
-      <div class="centrize">
-        <div class="v-center">
-          <div id="mask">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Preloader-->
+
     <!-- Navigation Bar-->
     <header id="topnav">
       <div class="container">
@@ -452,40 +439,41 @@
       <div class="container">
         <div class="single-product-details">
           <div class="row">
+
+
+          <?php 
+          if(isset($_GET['slug'])) {
+            
+            $slug = $_GET['slug'];
+            
+            $product_data = connect()->query("SELECT *FROM products where slug = '$slug'");
+            $data = $product_data->fetch_object();
+          }
+          ?>
             <div class="col-md-6">
               <div data-options="{&quot;animation&quot;: &quot;slide&quot;, &quot;controlNav&quot;: true}" class="flexslider nav-inside control-nav-dark">
                 <ul class="slides">
                   <li>
-                    <img src="images/shop/single-1.jpg" alt="">
-                  </li>
-                  <li>
-                    <img src="images/shop/single-2.jpg" alt="">
-                  </li>
-                  <li>
-                    <img src="images/shop/single-3.jpg" alt="">
-                  </li>
-                  <li>
-                    <img src="images/shop/single-4.jpg" alt="">
+                    <img src="../media/products/<?php echo $data->photo; ?>" alt="">
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col-md-5 col-md-offset-1">
               <div class="title mt-0">
-                <h2>Notch Blazer in Longline<span class="red-dot"></span></h2>
-                <p class="m-0">Free Shipping Worldwide</p>
+                <h2><?php echo $data->name; ?><span class="red-dot"></span></h2>
               </div>
               <div class="single-product-price">
                 <div class="row">
                   <div class="col-xs-6">
-                    <h3><del>$29.99</del><span>$24.99</span></h3>
+                    <h3><del>$<?php echo $data->price; ?></del><span>$<?php echo $data->s_price; ?></span></h3>
                   </div>
                   <div class="col-xs-6 text-right"><span class="rating-stars">              <i class="ti-star full"></i><i class="ti-star full"></i><i class="ti-star full"></i><i class="ti-star full"></i><i class="ti-star"></i><span class="hidden-xs">(3 Reviews)</span></span>
                   </div>
                 </div>
               </div>
               <div class="single-product-desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis repellat iste natus at impedit quo consequuntur, quam, vel saepe voluptatum minus temporibus excepturi aspernatur labore molestiae fugit tempora veritatis unde.</p>
+                <p><?php echo $data->description; ?></p>
               </div>
               <div class="single-product-add">
                 <form action="#" class="inline-form">
