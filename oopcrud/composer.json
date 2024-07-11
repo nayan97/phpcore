@@ -1,0 +1,20 @@
+{
+    "name": "nayan97/oopcrud",
+    "description": "second assignment",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nayan Islam",
+            "email": "nayanislam085@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autolaod":{
+        "psr-4":{
+            "App\\":"app/"
+            
+        }
+    }
+}

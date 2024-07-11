@@ -32,3 +32,10 @@ echo $b->info();
 
 
 ?>
+
+
+
+
+<!-- constractor and distructor lithen start i last 40 minutes -->
+
+
