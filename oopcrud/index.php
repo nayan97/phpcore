@@ -1,12 +1,11 @@
 <?php 
 
-use App\Utility\Sq;
-
-
-
-
+use App\Supports\Validate;
+use App\Controllers\StudentController;
 
 require_once "vendor/autoload.php";
+
+$stu = new StudentController;
 
 ?>
 
@@ -26,19 +25,22 @@ require_once "vendor/autoload.php";
 	/**
 	 * isset add student form
 	 */
+	$msg = '';
 
 	 if(isset($_POST['add'])){
 		// get all values
 
 		$name = $_POST['name'];
-		$eamil = $_POST['email'];
+		$email = $_POST['email'];
 		$cell = $_POST['cell'];
 		$uname = $_POST['uname'];
 
-		if(empty($name) || empty($eamil) || empty($cell) || empty($uname)){
-			$msg = Sq::msg('All filds are required');
+		if(empty($name) || empty($email) || empty($cell) || empty($uname)){
+			$msg = Validate::msg('All filds are required');
+		}else if(Validate::email($email) == false){
+			$msg = Validate::msg('Email is not valid');
 		}else{
-			 
+			$stu -> addStudent($name, $email, $cell, $uname);
 		}
 
 
@@ -58,7 +60,7 @@ require_once "vendor/autoload.php";
 		// }
 
 
-		echo $msg ?? '';
+		Validate::show($msg);
 	?>
 	<div id="add_student" class="modal fade">
 		<div class="modal-dialog modal-dialog-centered">

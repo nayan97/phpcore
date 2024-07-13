@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Support;
+namespace App\Supports;
 use mysqli;
 
 abstract class Database{
 
-  private $host = 'HOST';
-  private $user = 'USER';
-  private $pass = 'PASS';
-  private $db = 'DB';
+  private $host = HOST;
+  private $user = USER;
+  private $pass = '';
+  private $db = DB;
+
   private $connection;
 
 
@@ -18,7 +19,7 @@ abstract class Database{
    */
 
   private function connection(){
-    return $this-> connection = new mysqli($this -> host, $this -> pass, $this -> user, $this -> db) ;
+    return $this-> connection = new mysqli($this -> host, $this -> user, $this -> pass, $this -> db) ;
   }
 
 
@@ -44,9 +45,9 @@ abstract class Database{
   /**
    * create a data 
    */
-  protected function create()
+  protected function create($sql)
   {
-    # code...
+     $this -> connection() -> query($sql);
   }
   /**
    * update a data
