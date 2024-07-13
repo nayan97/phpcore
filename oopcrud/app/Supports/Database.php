@@ -29,9 +29,10 @@ abstract class Database{
   /**
    * get all data
    */
-  protected function all()
+
+  protected function all($table, $order = 'DESC')
   {
-    # code...
+    return $this -> connection() -> query("SELECT * FROM {$table} ORDER BY id {$order} ");
   }
 
 
@@ -60,9 +61,9 @@ abstract class Database{
   /**
    * delate data
    */
-  protected function delete()
+  protected function delete($table, $id)
   {
-    # code...
+    $this -> connection() -> query("DELETE FROM $table WHERE id = {$id}");
   }
 
 

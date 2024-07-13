@@ -7,8 +7,15 @@ require_once "vendor/autoload.php";
 
 $stu = new StudentController;
 
-?>
+if (isset($_GET['delete_id'])){
+	$delete_id = $_GET['delete_id'];
 
+	$stu ->studentDell($delete_id);
+
+	header('Location:index.php');
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,12 +49,9 @@ $stu = new StudentController;
 		}else{
 			$stu -> addStudent($name, $email, $cell, $uname);
 		}
-
-
 	 }
 	
 	?>
-
 
 	<div class="wrap-table shadow">
 	<button data-toggle="modal" href="#add_student" class="btn btn-primary">Add New Student</button>
@@ -118,67 +122,29 @@ $stu = new StudentController;
 						</tr>
 					</thead>
 					<tbody>
+
+
+					<?php 
+
+                       $datas = $stu -> showAllStudent();
+					
+						while( $data = $datas -> fetch_object()) :
+					
+					?>
 						<tr>
 							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
+							<td><?php echo $data -> name; ?></td>
+							<td><?php echo $data -> email; ?></td>
+							<td><?php echo $data -> cell; ?></td>
 							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
 							<td>
 								<a class="btn btn-sm btn-info" href="#">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								<a class="btn btn-sm btn-danger" href="?delete_id=<?php echo $data -> id; ?>">Delete</a>
 							</td>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						
+
+					<?php endwhile ?>
 
 					</tbody>
 				</table>
@@ -186,13 +152,6 @@ $stu = new StudentController;
 		</div>
 	</div>
 	
-
-
-
-
-
-
-
 	<!-- JS FILES  -->
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
