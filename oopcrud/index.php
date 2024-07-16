@@ -41,6 +41,7 @@ if (isset($_GET['delete_id'])){
 		$email = $_POST['email'];
 		$cell = $_POST['cell'];
 		$uname = $_POST['uname'];
+		
 
 		if(empty($name) || empty($email) || empty($cell) || empty($uname)){
 			$msg = Validate::msg('All filds are required');
@@ -136,10 +137,10 @@ if (isset($_GET['delete_id'])){
 							<td><?php echo $data -> name; ?></td>
 							<td><?php echo $data -> email; ?></td>
 							<td><?php echo $data -> cell; ?></td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
+							<td><img style="width:60px; height:60px" src="img/students/<?php echo $data ->photo; ?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
+								<a class="btn btn-sm btn-info" href="single.php?id=<?php echo $data -> id; ?>">View</a>
+								<a class="btn btn-sm btn-warning" data-toggle="modal" href="#add_student">Edit</a>
 								<a class="btn btn-sm btn-danger" href="?delete_id=<?php echo $data -> id; ?>">Delete</a>
 							</td>
 						</tr>

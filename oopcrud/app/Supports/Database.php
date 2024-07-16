@@ -39,9 +39,11 @@ abstract class Database{
   /**
    * find a data
    */
-  protected function find()
+  protected function find($table, $id)
   {
-    # code...
+    $data = $this -> connection() -> query("SELECT * FROM {$table} WHERE id = {$id} ");
+
+    return $data ->fetch_object();
   }
   /**
    * create a data 
