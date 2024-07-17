@@ -140,7 +140,7 @@ if (isset($_GET['delete_id'])){
 							<td><img style="width:60px; height:60px" src="img/students/<?php echo $data ->photo; ?>" alt=""></td>
 							<td>
 								<a class="btn btn-sm btn-info" href="single.php?id=<?php echo $data -> id; ?>">View</a>
-								<a class="btn btn-sm btn-warning" data-toggle="modal" href="#add_student">Edit</a>
+								<a class="btn btn-sm btn-warning"  href="edit.php?id=<?php echo $data -> id; ?>">Edit</a>
 								<a class="btn btn-sm btn-danger" href="?delete_id=<?php echo $data -> id; ?>">Delete</a>
 							</td>
 						</tr>

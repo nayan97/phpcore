@@ -55,9 +55,9 @@ abstract class Database{
   /**
    * update a data
    */
-  protected function update()
+  protected function update($table, $id)
   {
-    # code...
+    $this -> connection() -> query("UPDATE FROM $table WHERE id = {$id}");
   }
 
   /**
